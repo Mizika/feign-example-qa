@@ -6,6 +6,8 @@ import feign.example.qa.model.Category;
 import feign.example.qa.model.PetModel;
 import feign.example.qa.model.Tags;
 import feing.example.utils.TestBase;
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +18,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+@Epic("Test")
+@Feature("Feign example")
+@Severity(SeverityLevel.NORMAL)
+@DisplayName("Example with passed test")
 public class CreatePetTestCase extends TestBase {
     @Autowired
     PetClient petClient;
@@ -24,6 +30,8 @@ public class CreatePetTestCase extends TestBase {
 
 
     @Test
+    @Story("Feign")
+    @Description("Example with passed test")
     void createPet() {
         step("Добавление питомца");
         var pet = PetModel.builder()
