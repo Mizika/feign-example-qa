@@ -1,5 +1,6 @@
 package feing.example.testcases;
 
+import com.github.javafaker.Faker;
 import feign.example.qa.clients.pet.PetClient;
 import feign.example.qa.clients.pet.exceptions.BadRequestExceptionPet;
 import feing.example.utils.TestBase;
@@ -20,20 +21,25 @@ public class CheckExceptionTestCase extends TestBase {
 
     @Autowired
     PetClient petClient;
+    @Autowired
+    Faker faker;
 
     @Test
     @Story("Feign")
     @Description("Example with error decoder")
     void checkException() {
+        var status = faker.color().name();
+
         step("Проверка ошибки при некорректном статусе");
-        var checkExceptionWithInvalidStatus = Assertions.assertThrows(BadRequestExceptionPet.class, () -> {
-            petClient.findByStatus("test");
+        var checkExceptionWithInvalidStatus =
+                Assertions.assertThrows(BadRequestExceptionPet.class, () -> {
+            petClient.findByStatus(status);
         }, "Check incorrect status");
 
         assertThat("Проверка, кода ошибки","400",
                 equalTo(checkExceptionWithInvalidStatus.getCode()));
         assertThat("Проверка, текста ошибки",
-                "Input error: query parameter `status value `test` is not in the allowable values `[available, pending, sold]`",
+                "Input error: query parameter `status value `"+status+"` is not in the allowable values `[available, pending, sold]`",
                 equalTo(checkExceptionWithInvalidStatus.getMessage()));
     }
 }

@@ -13,9 +13,34 @@ import java.util.List;
         configuration = {PetFeignConfiguration.class}
 )
 public interface PetClient {
+
+    /**
+     * Find pets by status
+     * @param status status pets
+     * @return list of pets
+     */
     @RequestMapping(method = RequestMethod.GET,
             value = "/pet/findByStatus?status={status}",
             headers = "Accept=application/json")
-    @ExceptionHandler(FeignException.class)
     List<PetModel> findByStatus(@PathVariable("status") String status);
+
+    /**
+     * Add new pet
+     * @param petModel filled pet model
+     * @return pet model
+     */
+    @RequestMapping(method = RequestMethod.POST,
+            value = "/pet",
+            headers = "Accept=application/json")
+    PetModel addNewPet(PetModel petModel);
+
+    /**
+     * Find pets by id
+     * @param id status pets
+     * @return pet model
+     */
+    @RequestMapping(method = RequestMethod.GET,
+            value = "/pet/{id}",
+            headers = "Accept=application/json")
+    PetModel findById(@PathVariable("id") int id);
 }
