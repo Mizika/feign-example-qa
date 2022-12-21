@@ -1,0 +1,10 @@
+spring:
+  main:
+    banner-mode: off
+
+logging:
+  level:
+    feign: DEBUG
+
+test:
+  url: https://petstore3.swagger.io/api/v3

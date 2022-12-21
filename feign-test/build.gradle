@@ -1,0 +1,9 @@
+dependencies {
+    implementation project(':app')
+}
+
+test {
+    ignoreFailures = true
+    testLogging.showStandardStreams = true
+    useJUnitPlatform()
+}

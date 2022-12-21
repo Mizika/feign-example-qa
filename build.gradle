@@ -18,32 +18,46 @@ allprojects {
     apply plugin: "io.spring.dependency-management"
     apply plugin: "io.qameta.allure"
 }
-group 'feign.example'
-version '1.0.0'
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
-    implementation "org.springframework.boot:spring-boot-starter"
-    implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.5'
-    testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.9.1'
-    testImplementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.9.0'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    implementation group: 'org.yaml', name: 'snakeyaml', version: '1.32'
-    implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
-    implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
-
+subprojects {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        implementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+        implementation "org.springframework.boot:spring-boot-starter"
+        implementation "org.springframework.boot:spring-boot-starter-web"
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.5'
+        testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.9.1'
+        testImplementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.9.0'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        implementation group: 'org.yaml', name: 'snakeyaml', version: '1.32'
+        implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
+    }
 }
 
-test {
-    useJUnitPlatform()
+configure(allprojects) {
+    group 'feign.example'
+    version '1.0.0'
+
+    allure {
+        version = '2.17.0'
+    }
+    bootJar {
+        enabled = false
+    }
+    jar {
+        enabled = true
+    }
+    [compileJava, compileTestJava]*.options.collect { options -> options.debug = true }
+    [compileJava, compileTestJava]*.options.collect { options -> options.encoding = "UTF-8" }
 }

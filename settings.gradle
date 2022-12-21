@@ -1,2 +1,4 @@
 rootProject.name = 'feign-example'
+include 'app'
+include 'feign-test'
 
