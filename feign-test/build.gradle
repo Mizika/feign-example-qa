@@ -5,5 +5,11 @@ dependencies {
 test {
     ignoreFailures = true
     testLogging.showStandardStreams = true
+    maxHeapSize = "4048m"
+    maxParallelForks = Runtime.runtime.availableProcessors()
+    systemProperty("junit.jpiter.execution.parallel.enabled", true)
+    systemProperty("junit.jpiter.execution.parallel.node.default", "concurrent")
+    systemProperty("junit.jpiter.execution.parallel.node.classes.default", "same_thread")
+    systemProperty("junit.jpiter.execution.autodetection.enabled", "true")
     useJUnitPlatform()
 }
