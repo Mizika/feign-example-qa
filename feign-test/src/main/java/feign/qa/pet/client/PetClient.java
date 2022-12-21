@@ -3,6 +3,7 @@ package feign.qa.pet.client;
 import feign.qa.pet.client.config.PetFeignConfiguration;
 import feign.qa.pet.models.PetModel;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,13 +18,14 @@ public interface PetClient {
 
     /**
      * Find pets by status
+     *
      * @param status status pets
      * @return list of pets
      */
     @RequestMapping(method = RequestMethod.GET,
             value = "/pet/findByStatus?status={status}",
             headers = "Accept=application/json")
-    List<PetModel> findByStatus(@PathVariable("status") String status);
+    ResponseEntity<List<PetModel>> findByStatus(@PathVariable("status") String status);
 
     /**
      * Add new pet

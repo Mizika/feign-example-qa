@@ -39,7 +39,8 @@ public class CheckExceptionTestCase extends TestBase {
         assertThat("Проверка, кода ошибки","400",
                 equalTo(checkExceptionWithInvalidStatus.getCode()));
         assertThat("Проверка, текста ошибки",
-                "Input error: query parameter `status value `"+status+"` is not in the allowable values `[available, pending, sold]`",
+                "Input error: query parameter `status value `" + status + "` " +
+                        "is not in the allowable values `[available, pending, sold]`",
                 equalTo(checkExceptionWithInvalidStatus.getMessage()));
     }
 }
