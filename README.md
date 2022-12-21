@@ -1,0 +1,1 @@
+Пример проекта сделан на основе [openapi контракта Petstore](https://petstore3.swagger.io/)
