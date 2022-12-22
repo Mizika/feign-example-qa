@@ -38,7 +38,6 @@ public class WorkWithResponseEntityTestCase extends TestBase {
         assertThat("Проверка массива, каждая сущность имеет статус available",
                 listPet.stream().map(PetModel::getStatus).collect(Collectors.toList()),
                 everyItem(equalTo("available")));
-
     }
 }
 

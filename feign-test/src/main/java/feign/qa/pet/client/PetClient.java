@@ -39,11 +39,22 @@ public interface PetClient {
 
     /**
      * Find pets by id
-     * @param id status pets
+     *
+     * @param id id pets
      * @return pet model
      */
     @RequestMapping(method = RequestMethod.GET,
             value = "/pet/{id}",
             headers = "Accept=application/json")
     PetModel findById(@PathVariable("id") int id);
+
+    /**
+     * Find pets by id
+     *
+     * @param id id pets
+     */
+    @RequestMapping(method = RequestMethod.DELETE,
+            value = "/pet/{id}",
+            headers = "Accept=application/json")
+    ResponseEntity<String> deleteById(@PathVariable("id") int id);
 }
