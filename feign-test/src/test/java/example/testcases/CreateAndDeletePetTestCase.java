@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @Epic("Test")
 @Feature("Feign example")
 @Severity(SeverityLevel.NORMAL)
-@DisplayName("Example with passed test")
+@DisplayName("Example with create and delete pet")
 public class CreateAndDeletePetTestCase extends TestBase {
     @Autowired
     PetClient petClient;
@@ -29,7 +29,7 @@ public class CreateAndDeletePetTestCase extends TestBase {
     @Autowired
     Faker faker;
 
-    PetModel addNewPet;
+    private PetModel addNewPet;
 
     @BeforeEach
     void setup() {
@@ -46,12 +46,14 @@ public class CreateAndDeletePetTestCase extends TestBase {
     @AfterEach
     void tearDown() {
         step("Удаление добавленного питомца");
-        petClient.deleteById(addNewPet.getId());
+        var deletePet = petClient.deleteById(addNewPet.getId());
+        assertThat("Проверка, status code", deletePet.getStatusCode().is2xxSuccessful());
+        assertThat("Проверка, body", deletePet.getBody(), equalTo("Pet deleted"));
     }
 
     @Test
     @Story("Feign")
-    @Description("Example with passed test")
+    @Description("Example with create and delete pet")
     void createAndDeletePet() {
         step("Поиск добавленного питомца по id");
         var findAddPet = petClient.findById(addNewPet.getId());
