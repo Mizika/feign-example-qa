@@ -17,4 +17,10 @@ public class PetFeignConfiguration {
     public PetErrorDecoder petErrorDecoder() {
         return new PetErrorDecoder();
     }
+
+    @Bean
+    public CustomFeignRequestResponseLogging customFeignRequestLogging() {
+        return new CustomFeignRequestResponseLogging();
+    }
+
 }

@@ -2,7 +2,7 @@ dependencies {
     implementation project(':app')
     testImplementation 'org.projectlombok:lombok:1.18.24'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
-    implementation group: 'io.qameta.allure', name: 'allure-hamcrest', version: '2.20.1'
+//    implementation group: 'io.qameta.allure', name: 'allure-hamcrest', version: '2.20.1'
 
 }
 
