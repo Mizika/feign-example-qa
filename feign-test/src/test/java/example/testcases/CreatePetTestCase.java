@@ -35,7 +35,7 @@ public class CreatePetTestCase extends TestBase {
     void createPet() {
         step("Добавление питомца");
         var pet = PetModel.builder()
-                .id(new Random().ints(10, 1000).findFirst().getAsInt())
+                .id(new Random().longs(10, 1000).findFirst().getAsLong())
                 .name(faker.name().firstName())
                 .category(Category.builder()
                         .id(new Random().ints(10, 1000).findFirst().getAsInt())

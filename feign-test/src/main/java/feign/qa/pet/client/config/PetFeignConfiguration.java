@@ -19,8 +19,8 @@ public class PetFeignConfiguration {
     }
 
     @Bean
-    public CustomFeignRequestResponseLogging customFeignRequestLogging() {
-        return new CustomFeignRequestResponseLogging();
+    public CustomFeignRequestResponseAllureLogging customFeignRequestLogging() {
+        return new CustomFeignRequestResponseAllureLogging();
     }
 
 }

@@ -46,7 +46,7 @@ public interface PetClient {
     @RequestMapping(method = RequestMethod.GET,
             value = "/pet/{id}",
             headers = "Accept=application/json")
-    PetModel findById(@PathVariable("id") int id);
+    PetModel findById(@PathVariable("id") Long id);
 
     /**
      * Find pets by id
@@ -56,5 +56,5 @@ public interface PetClient {
     @RequestMapping(method = RequestMethod.DELETE,
             value = "/pet/{id}",
             headers = "Accept=application/json")
-    ResponseEntity<String> deleteById(@PathVariable("id") int id);
+    ResponseEntity<String> deleteById(@PathVariable("id") Long id);
 }

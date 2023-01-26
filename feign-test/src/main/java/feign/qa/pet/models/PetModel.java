@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @JsonDeserialize(builder = PetModel.PetModelBuilder.class)
 public class PetModel {
-    int id;
+    Long id;
     Category category;
     String name;
     List<String> photoUrls;
